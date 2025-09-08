@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Handler;
 
 use App\Command\CreateNotification;
-use App\Entity\Notification;
+use App\Entity\NotificationInterface;
 use App\Factory\NotificationFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
@@ -19,7 +19,7 @@ final readonly class CreateNotificationHandler
     ) {
     }
 
-    public function __invoke(CreateNotification $command): Notification
+    public function __invoke(CreateNotification $command): NotificationInterface
     {
         $notification = $this->notificationFactory->createNewNotification(
             $command->recipientEmail,

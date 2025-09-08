@@ -7,7 +7,7 @@ namespace App\Tests\Api;
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 
 use App\Entity\Notification;
-use App\Tests\Factory\NotificationFactory;
+use App\Tests\FixtureFactory\NotificationFixtureFactory;
 use PHPUnit\Framework\Attributes\Test;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -19,7 +19,7 @@ final class NotificationsTest extends ApiTestCase
     #[Test]
     public function it_gets_notifications(): void
     {
-        NotificationFactory::createMany(100);
+        NotificationFixtureFactory::createMany(100);
 
         self::createClient()->request('GET', '/api/notifications');
 
@@ -46,7 +46,7 @@ final class NotificationsTest extends ApiTestCase
     public function it_gets_notification_by_identifier(): void
     {
         /** @var Notification $notification */
-        $notification = NotificationFactory::createOne();
+        $notification = NotificationFixtureFactory::createOne();
         $uri = '/api/notifications/' . $notification->getId();
 
         self::createClient()->request('GET', $uri);
@@ -136,7 +136,7 @@ final class NotificationsTest extends ApiTestCase
     public function it_sends_a_notification(): void
     {
         /** @var Notification $notification */
-        $notification = NotificationFactory::createOne();
+        $notification = NotificationFixtureFactory::createOne();
 
         self::createClient()->request(
             method: 'PATCH',

@@ -45,7 +45,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         read: false,
     ),
 ])]
-class Notification
+class Notification implements NotificationInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
