@@ -102,6 +102,13 @@ how the "sending" per se should happen (like in sync it directly logs, and in as
 5. Added the symfony workflow state machine to work with Notification statuses
 Workflow could use !php/const in the yaml declaration is just a small improvement to consider.
 
+6. Moved and renamed the NotificationFactory into FixtureFactory/NotificationFixtureFactory, thus making a better distinction between
+factory used in the app and the one used in tests. Btw I am using Factory and not constructor to make a Notification 
+due to complexity, it needs a createdAt date, and string data so better to get the object from factory (also it is easier to test)
+
+7. Added the Interface for Notification - code is more flexible, does not depend on the implementation of this Notification
+   (this could be implemented into all possible classes, I have overlooked it due to my recent jobs where it was treated as boilerplate and not needed code)
+
 ## Some improvements I see or features I would consider
 - there is no authorization and authentication so it might be considered for safety
 - there might be some things done for throttling/rate limiting also some caching could be introduced for f.e. GET (but it depends)

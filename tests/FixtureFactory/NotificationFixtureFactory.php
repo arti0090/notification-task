@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Factory;
+namespace App\Tests\FixtureFactory;
 
 use App\Entity\Notification;
 use App\Enum\NotificationStatus;
@@ -9,7 +9,7 @@ use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 /**
  * @extends PersistentProxyObjectFactory<Notification>
  */
-final class NotificationFactory extends PersistentProxyObjectFactory
+final class NotificationFixtureFactory extends PersistentProxyObjectFactory
 {
     public static function class(): string
     {
