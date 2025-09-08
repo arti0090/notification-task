@@ -98,7 +98,17 @@ implementation, I used the abstract class for them, from which they extend and f
 how the "sending" per se should happen (like in sync it directly logs, and in async it sends a message on bus)
 
 4. About tests, there might be more test cases for Notification API
+
 5. Added the symfony workflow state machine to work with Notification statuses
+Workflow could use !php/const in the yaml declaration is just a small improvement to consider.
+
+## Some improvements I see or features I would consider
+- there is no authorization and authentication so it might be considered for safety
+- there might be some things done for throttling/rate limiting also some caching could be introduced for f.e. GET (but it depends)
+- there could be more tests for some cases (but that is what I also mentioned in test files)
+- as it is not a part of task, I have only added the "default" configs for docker and github workflows. 
+This could be done, checked, and improved for real project.
+- for async there could be also fail mechanism, retry and so on done... here I just made a happy path.
 
 ## Running project
 
@@ -123,5 +133,7 @@ Notifications should be logged to a log file (`var/log/notification.log`)
 
 - setup, considerations, documenting — 1h
 - adding api platform, adding tests, working on custom 'POST' endpoint, fixing and adjusting phpunit - 3h
+- adding patch endpoint and solving the api platform shenanigans - 2h
+- add some missing test, take a look into some improvements that could be done - 0.5h
 - setting up CI/CD workflow - 0.5h
 
