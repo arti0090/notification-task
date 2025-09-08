@@ -134,7 +134,9 @@ $ bin/console doctrine:migrations:migrate
 $ symfony serve
 ```
 
-Notifications should be logged to a log file (`var/log/notification.log`)
+- api documentation is on '/api' route
+
+- Notifications should be logged to a log file (`var/log/notification.log`)
 
 ## TIME LOG
 
