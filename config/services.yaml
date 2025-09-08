@@ -16,5 +16,19 @@ services:
     App\:
         resource: '../src/'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # Configure notification senders
+    # Sync sender is the default implementation
+    App\Sender\NotificationSender:
+        arguments:
+            $logger: '@logger'
+            $notificationRepository: '@App\Repository\NotificationRepository'
+            $entityManager: '@doctrine.orm.entity_manager'
+
+    App\Sender\NotificationSenderInterface: '@App\Sender\NotificationSender'
+
+    # Async sender is available as a separate service
+    App\Sender\AsyncNotificationSender:
+        arguments:
+            $notificationRepository: '@App\Repository\NotificationRepository'
+            $entityManager: '@doctrine.orm.entity_manager'
+            $messageBus: '@messenger.bus.default'

@@ -129,4 +129,21 @@ final class NotificationsTest extends ApiTestCase
             'title' => 'An error occurred',
         ]);
     }
+
+    #[Test]
+    public function it_sends_a_notification(): void
+    {
+        /** @var Notification $notification */
+        $notification = NotificationFactory::createOne();
+
+        $response = self::createClient()->request(
+            method: 'PATCH',
+            url: '/api/notifications/' . $notification->getId() . '/send',
+            options: [
+                'headers' => ['content-type' => 'application/merge-patch+json'],
+            ],
+        );
+
+        self::assertResponseIsSuccessful();
+    }
 }

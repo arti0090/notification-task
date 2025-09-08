@@ -84,8 +84,19 @@ $ composer require --dev justinrainbow/json-schema
 $ composer require --dev dama/doctrine-test-bundle
 ```
 
-- creating entity 'Notification' → I made a recipient email as a string, but this could be an array/a collection of strings cause 
-in many email systems you can send them to many ppl (just making it simple :))
+- creating entity 'Notification' → I made a recipient email as a string, but this could be an array/a collection of strings cause
+  in many email systems you can send them to many ppl (just making it simple :))
+
+
+3. creating the endpoint for sending notifications
+
+As a way of "sending notification" I used logger as it does not need to be a real send. Btw those could be used in real application,
+for easier debugging (so we can say they have double purpose).
+
+At first I thought to make Sender classes to use just NotificationSenderInterface, but later as they have some similarities in
+implementation, I used the abstract class for them, from which they extend and for new Sender, there is only a need of implementing
+how the "sending" per se should happen (like in sync it directly logs, and in async it sends a message on bus)
+
 
 ## Running project
 
@@ -104,7 +115,10 @@ $ bin/console doctrine:migrations:migrate
 $ symfony serve
 ```
 
+Notifications should be logged to a log file (`var/log/notification.log`)
+
 ## TIME LOG
 
 - setup, considerations, documenting — 1h
 - adding api platform, adding tests, working on custom 'POST' endpoint, fixing and adjusting phpunit - 3h
+
