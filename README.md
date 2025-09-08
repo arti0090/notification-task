@@ -36,7 +36,7 @@ Good luck! We look forward to seeing your work.
 
 ## STEPS AND THOUGHT PROCESS
 
-So first thing is to setup project, I am using PHP and SQL database from my machine, but I will leave the docker files
+1. So the first thing is to set up project, I am using a PHP and SQL database from my machine, but I will leave the docker files
 provided from Symfony. I will not focus on them (if I will have time I will check them at the end).
 
 Setup with commands:
@@ -66,7 +66,45 @@ $ composer require rector/rector --dev
 $ composer require symplify/easy-coding-standard --dev
 ```
 
+2. Creating endpoints, entities and classes
+
+- I almost forgot about adding an Api platform, as we are creating API for those notifications and also some libs for testing
+
+```bash
+$ symfony composer require api
+$ composer require --dev foundry orm-fixtures
+```
+
+- creating functional tests for Notification API—for now high-level tests to make them 'red' and work on them later
+  (add some missing vendors for tests)
+
+```bash
+$ composer require --dev symfony/browser-kit symfony/http-client
+$ composer require --dev justinrainbow/json-schema
+$ composer require --dev dama/doctrine-test-bundle
+```
+
+- creating entity 'Notification' → I made a recipient email as a string, but this could be an array/a collection of strings cause 
+in many email systems you can send them to many ppl (just making it simple :))
+
+## Running project
+
+- change env variables (like env secret if needed, mysql database of your choice, etc.)
+- run commands
+
+```bash
+$ composer install
+$ bin/console doctrine:database:create
+$ bin/console doctrine:migrations:migrate
+```
+
+- start project
+
+```bash
+$ symfony serve
+```
+
 ## TIME LOG
 
-- setup, considerations, documenting - 1h min
-- 
+- setup, considerations, documenting — 1h
+- adding api platform, adding tests, working on custom 'POST' endpoint, fixing and adjusting phpunit - 3h
