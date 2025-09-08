@@ -36,8 +36,6 @@ use Symfony\Component\Validator\Constraints as Assert;
         status: 202,
         controller: SendNotificationController::class,
         input: false,
-        output: false,
-        read: false,
         name: 'app_notification_send',
     ),
     new Delete(
@@ -117,5 +115,15 @@ class Notification
     public function setSentAt(?\DateTimeImmutable $sentAt): void
     {
         $this->sentAt = $sentAt;
+    }
+
+    public function getStatusAsString(): string
+    {
+        return $this->status->value;
+    }
+
+    public function setStatusAsString(string $stateAsString): void
+    {
+        $this->status = NotificationStatus::from($stateAsString);
     }
 }

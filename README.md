@@ -97,6 +97,8 @@ At first I thought to make Sender classes to use just NotificationSenderInterfac
 implementation, I used the abstract class for them, from which they extend and for new Sender, there is only a need of implementing
 how the "sending" per se should happen (like in sync it directly logs, and in async it sends a message on bus)
 
+4. About tests, there might be more test cases for Notification API
+5. Added the symfony workflow state machine to work with Notification statuses
 
 ## Running project
 
@@ -121,4 +123,5 @@ Notifications should be logged to a log file (`var/log/notification.log`)
 
 - setup, considerations, documenting — 1h
 - adding api platform, adding tests, working on custom 'POST' endpoint, fixing and adjusting phpunit - 3h
+- setting up CI/CD workflow - 0.5h
 

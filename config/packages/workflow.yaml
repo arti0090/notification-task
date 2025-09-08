@@ -1,0 +1,21 @@
+framework:
+    workflows:
+        notification:
+            type: 'state_machine'
+            supports:
+                - App\Entity\Notification
+            initial_marking: pending
+            marking_store:
+                type: method
+                property: statusAsString
+            places:
+                - pending
+                - sent
+                - failed
+            transitions:
+                send:
+                    from: [pending, failed]
+                    to: sent
+                fail:
+                    from: pending
+                    to: failed

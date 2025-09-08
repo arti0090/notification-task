@@ -100,6 +100,7 @@ final class NotificationsTest extends ApiTestCase
         ]);
     }
 
+    // Can be more test cases for f.e. blank data
     #[Test]
     public function it_does_not_create_a_new_notification_with_invalid_data(): void
     {
@@ -130,13 +131,14 @@ final class NotificationsTest extends ApiTestCase
         ]);
     }
 
+    // can have a test for the wrong identifier
     #[Test]
     public function it_sends_a_notification(): void
     {
         /** @var Notification $notification */
         $notification = NotificationFactory::createOne();
 
-        $response = self::createClient()->request(
+        self::createClient()->request(
             method: 'PATCH',
             url: '/api/notifications/' . $notification->getId() . '/send',
             options: [
@@ -145,5 +147,8 @@ final class NotificationsTest extends ApiTestCase
         );
 
         self::assertResponseIsSuccessful();
+        self::assertJsonContains([
+            'message' => 'Notification accepted and will be sent soon.',
+        ]);
     }
 }

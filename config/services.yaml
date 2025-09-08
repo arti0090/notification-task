@@ -23,6 +23,7 @@ services:
             $logger: '@logger'
             $notificationRepository: '@App\Repository\NotificationRepository'
             $entityManager: '@doctrine.orm.entity_manager'
+            $workflow: '@state_machine.notification'
 
     App\Sender\NotificationSenderInterface: '@App\Sender\NotificationSender'
 
@@ -32,3 +33,4 @@ services:
             $notificationRepository: '@App\Repository\NotificationRepository'
             $entityManager: '@doctrine.orm.entity_manager'
             $messageBus: '@messenger.bus.default'
+            $workflow: '@state_machine.notification'

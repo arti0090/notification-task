@@ -8,15 +8,17 @@ use App\Entity\Notification;
 use App\Repository\NotificationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Workflow\WorkflowInterface;
 
 class NotificationSender extends AbstractNotificationSender
 {
     public function __construct(
         NotificationRepository $notificationRepository,
         EntityManagerInterface $entityManager,
+        WorkflowInterface $workflow,
         protected readonly LoggerInterface $logger,
     ) {
-        parent::__construct($notificationRepository, $entityManager);
+        parent::__construct($notificationRepository, $entityManager, $workflow);
     }
 
     protected function sendNotification(Notification $notification): void

@@ -9,15 +9,17 @@ use App\Message\SendNotificationMessage;
 use App\Repository\NotificationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Workflow\WorkflowInterface;
 
 class AsyncNotificationSender extends AbstractNotificationSender
 {
     public function __construct(
         NotificationRepository $notificationRepository,
         EntityManagerInterface $entityManager,
+        WorkflowInterface $workflow,
         private readonly MessageBusInterface $messageBus
     ) {
-        parent::__construct($notificationRepository, $entityManager);
+        parent::__construct($notificationRepository, $entityManager, $workflow);
     }
 
     protected function sendNotification(Notification $notification): void
